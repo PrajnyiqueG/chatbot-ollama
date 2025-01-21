@@ -33,6 +33,7 @@ import { SystemPrompt } from './SystemPrompt';
 import { TemperatureSlider } from './Temperature';
 import { MemoizedChatMessage } from './MemoizedChatMessage';
 
+
 interface Props {
   stopConversationRef: MutableRefObject<boolean>;
 }
@@ -323,58 +324,34 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
   }, [messagesEndRef]);
 
   return (
-    <div className="relative flex-1 overflow-hidden bg-white dark:bg-[#343541]">
+    <div className="relative flex-1 overflow-hidden bg-white">
         <>
           <div
-            className="max-h-full overflow-x-hidden"
+            className="max-h-full overflow-x-hidden bg-white"
             ref={chatContainerRef}
             onScroll={handleScroll}
           >
             {selectedConversation?.messages.length === 0 ? (
               <>
-                <div className="mx-auto flex flex-col space-y-5 md:space-y-10 px-3 pt-5 md:pt-12 sm:max-w-[600px]">
-                  <div className="text-center text-3xl font-semibold text-gray-800 dark:text-gray-100">
+                <div className="mx-auto flex flex-col space-y-5 md:space-y-10 px-3 pt-5 md:pt-12 sm:max-w-[600px] bg-white">
+                  <div className="text-center text-3xl font-semibold text-yellow-400">
+                   <img src="/images/athena-high-resolution-logo.png" alt="Athena Logo" />
+
+
                     {models.length === 0 ? (
                       <div>
                         <Spinner size="16px" className="mx-auto" />
                       </div>
                     ) : (
-                      'Chatbot Ollama'
+                      ''
                     )}
                   </div>
-
-                  {models.length > 0 && (
-                    <div className="flex h-full flex-col space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-600">
-                      <ModelSelect />
-
-                      <SystemPrompt
-                        conversation={selectedConversation}
-                        prompts={prompts}
-                        onChangePrompt={(prompt) =>
-                          handleUpdateConversation(selectedConversation, {
-                            key: 'prompt',
-                            value: prompt,
-                          })
-                        }
-                      />
-
-                      <TemperatureSlider
-                        label={t('Temperature')}
-                        onChangeTemperature={(temperature) =>
-                          handleUpdateConversation(selectedConversation, {
-                            key: 'temperature',
-                            value: temperature,
-                          })
-                        }
-                      />
-                    </div>
-                  )}
                 </div>
               </>
             ) : (
               <>
-                <div className="sticky top-0 z-10 flex justify-center border border-b-neutral-300 bg-neutral-100 py-2 text-sm text-neutral-500 dark:border-none dark:bg-[#444654] dark:text-neutral-200">
-                  {t('Model')}: {selectedConversation?.model.name} | {t('Temp')}
+                <div className="sticky top-0 z-10 flex justify-center bg-white py-2 text-sm text-neutral-500 dark:border-none">
+                  {t('Model')}: {'Athena'} | {t('Temp')}
                   : {selectedConversation?.temperature} |
                   <button
                     className="ml-2 cursor-pointer hover:opacity-50"
@@ -391,7 +368,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                 </div>
                 {showSettings && (
                   <div className="flex flex-col space-y-10 md:mx-auto md:max-w-xl md:gap-6 md:py-3 md:pt-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
-                    <div className="flex h-full flex-col space-y-4 border-b border-neutral-200 p-4 dark:border-neutral-600 md:rounded-lg md:border">
+                    <div className="flex h-full flex-col space-y-4 border-b border-neutral-200 p-4 md:rounded-lg md:border">
                       <ModelSelect />
                     </div>
                   </div>
@@ -416,7 +393,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                 {loading && <ChatLoader />}
 
                 <div
-                  className="h-[162px] bg-white dark:bg-[#343541]"
+                  className="h-[162px] bg-white "
                   ref={messagesEndRef}
                 />
               </>

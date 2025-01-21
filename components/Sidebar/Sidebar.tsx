@@ -86,7 +86,7 @@ const Sidebar = <T,>({
 
         <div className="flex-grow overflow-auto">
           {items?.length > 0 && (
-            <div className="flex border-b border-white/20 pb-2">
+            <div className="flex border-b border-gray-200 pb-2">
               {folderComponent}
             </div>
           )}
@@ -102,7 +102,7 @@ const Sidebar = <T,>({
               {itemComponent}
             </div>
           ) : (
-            <div className="mt-8 select-none text-center text-white opacity-50">
+            <div className="mt-8 select-none text-center text-gray-500 opacity-50">
               <IconMistOff className="mx-auto mb-3" />
               <span className="text-[14px] leading-normal">
                 {t('No data.')}
